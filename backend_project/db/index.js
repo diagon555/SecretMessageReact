@@ -1,11 +1,11 @@
 const Sequelize = require("sequelize");
 
-const sequelize =  new Sequelize("secret_messages", "root", "", {
+const sequelize =  new Sequelize("messages", "messages", "Mmess123", {
     dialect: "mysql",
     host: "localhost"
 });
 
-const Notes = require('./notes')(sequelize);
+const Notes = require('./Notes')(sequelize);
 
 module.exports = {
     sequelize : sequelize,

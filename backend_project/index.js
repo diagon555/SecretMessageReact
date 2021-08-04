@@ -10,7 +10,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.listen(3500, () => {
+app.listen(3401, () => {
     console.log("Server running")
 })
 
