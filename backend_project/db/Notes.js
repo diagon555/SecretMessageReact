@@ -13,6 +13,16 @@ module.exports = function (sequelize) {
             type: Sequelize.STRING,
             allowNull: true,
         },
+        clientIp: {
+            field: 'client_ip',
+            type: Sequelize.STRING,
+            allowNull: true,
+        },
+        clientUserAgent: {
+            field: 'client_user_agent',
+            type: Sequelize.STRING,
+            allowNull: true,
+        },
         timestamp: {
             type: Sequelize.INTEGER,
             allowNull: true
