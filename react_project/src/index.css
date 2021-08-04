@@ -25,3 +25,8 @@ a:hover {
   top: 5px;
   margin-right: 0.5em;
 }
+
+.clipboard-btn {
+  padding: 0 9px;
+  margin-left: 10px;
+}

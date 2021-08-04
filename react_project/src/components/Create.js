@@ -9,6 +9,7 @@ export default function Create () {
   const [errorText, setErrorText] = useState('')
 
   const SendData = (obj) => {
+    setErrorText('')
     Fetch('create', obj)
       .then(data => {
         console.log(data)
@@ -19,6 +20,18 @@ export default function Create () {
       })
   }
 
+  const formKeyDownHandler = event => {
+    if (event.ctrlKey && event.keyCode === 13) {
+      const note = event.target.value
+      if (note === '') {
+        return
+      }
+
+      SendData({ note })
+    }
+  }
+
+
   const loadDataFromForm = (event) => {
     event.preventDefault()
     const note = event.target.note.value.trim()
@@ -27,9 +40,7 @@ export default function Create () {
       return false
     }
 
-    setErrorText('')
-
-    SendData({"note": note})
+    SendData({ note })
   }
 
   const copyHandler = (event) => {
@@ -51,7 +62,11 @@ export default function Create () {
           { !url && (
             <form onSubmit={loadDataFromForm}>
               <label htmlFor="note">Текст:</label>
-              <textarea id="note" className="materialize-textarea" name="note" />
+              <textarea
+                onKeyDown={formKeyDownHandler}
+                id="note"
+                className="materialize-textarea"
+                name="note" />
               <button
                 className="waves-effect waves-light btn right"
                 type="submit"
@@ -62,10 +77,16 @@ export default function Create () {
             <div>
               <div className="card green lighten-4 green-text text-darken-4">
                 <div className="card-content">
-                  <a href={ url } target="_blank">{ url }</a>
-                  <a href="#" onClick={copyHandler} title="Копировать в буфер обмена">
-                    <i className="material-icons">content_copy</i>
-                  </a>
+                  <div className="valign-wrapper">
+                    <a href={ url } target="_blank" rel="noreferrer">{ url }</a>
+                    <button
+                      className="waves-effect waves-light btn clipboard-btn"
+                      onClick={copyHandler}
+                      title="Копировать в буфер обмена"
+                    >
+                      <i className="material-icons">content_copy</i>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div>

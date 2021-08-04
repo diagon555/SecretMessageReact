@@ -15,7 +15,7 @@ export default function Note() {
     Fetch(`note/${uid}`)
       .then(data => {
         if (!data.result) {
-          setErrorText('Сообщение не существует.')
+          setErrorText('Сообщения с данных ключем не существует.')
           return
         }
 
@@ -34,11 +34,11 @@ export default function Note() {
     getNote(noteURL)
   }, [noteURL])
 
-  const submitHandler = (event) => {
+  const submitHandler = event => {
     event.preventDefault()
     const noteId = event.target.hash.value
     if (noteId === '') {
-      setErrorText('Введите код сообщения.')
+      setErrorText('Введите ключ сообщения.')
       return
     }
     window.location.href = `/note/${noteId}`
@@ -62,7 +62,7 @@ export default function Note() {
               <div className="card-content">
                 <p>
                   <i className="material-icons">report_problem</i>
-                  <span>Внимание:</span> Сообщение было удалено с сервера при запросе.
+                  <span>Внимание:</span> Сообщение удалено с сервера.
                 </p>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function Note() {
           <AlertError text={errorText} />
         )}
         <form onSubmit={submitHandler}>
-          <label htmlFor="hash">Введите код:</label>
+          <label htmlFor="hash">Введите ключ:</label>
           <input className="input-field col s3" id="hash" type="text" autoFocus />
           <button
             className="waves-effect waves-light btn right"

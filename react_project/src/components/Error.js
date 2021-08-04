@@ -1,8 +1,10 @@
 export default function Error() {
   return (
-    <div>
-      <h1>Page not found</h1>
-      <a href="/">Home</a>
+    <div className="main">
+      <div className="container">
+        <h1>Страница не найдена</h1>
+        <a href="/">Перейти на главную</a>
+      </div>
     </div>
   )
 }
